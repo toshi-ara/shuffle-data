@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="/src/styles.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Shuffle Data</title>
+        <script type="module" src="/src/main.ts" defer></script>
+    </head>
+
+    <body>
+        <h2>Shuffle Data</h2>
+        <h3>エクセルファイル (xlsx) 選択</h3>
+            <button id="btn_select_file_input" type="button">選択</button>
+            <p id="msg_file_input"></p>
+        <h3>画像ファイルフォルダ</h3>
+            <button id="btn_select_dir_input" type="button">選択</button>
+            <p id="msg_dir_input"></p>
+        <h3>保存先フォルダ</h3>
+            <button id="btn_select_dir_output" type="button">選択</button>
+            <p id="msg_dir_output"></p>
+        <div>
+            <button id="btn_do" type="button">シャッフル実行</button>
+            <button id="btn_quit" type="button">終了</button>
+        </div>
+    </body>
+</html>

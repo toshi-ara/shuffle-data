@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="53.269444mm"
+   height="32.102779mm"
+   viewBox="0 0 53.269444 32.102779"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="image001.svg"
+   inkscape:export-filename="/home/ara/tmp/GUIJS/tauri/shffle-data/images/image001.png"
+   inkscape:export-xdpi="180"
+   inkscape:export-ydpi="180"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="true"
+     inkscape:zoom="2.6547419"
+     inkscape:cx="165.74116"
+     inkscape:cy="161.59763"
+     inkscape:window-width="946"
+     inkscape:window-height="1040"
+     inkscape:window-x="4"
+     inkscape:window-y="30"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid7998"
+       originx="-61.078658"
+       originy="-97.383641" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-26.281942,-42.156942)">
+    <text
+       xml:space="preserve"
+       style="font-size:4.9389px;line-height:100%;font-family:'Noto Sans CJK JP';-inkscape-font-specification:'Noto Sans CJK JP, Normal';text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="52.933949"
+       y="59.420834"
+       id="text2144"><tspan
+         sodipodi:role="line"
+         id="tspan2142"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Heros';-inkscape-font-specification:'TeX Gyre Heros';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583px"
+         x="52.933949"
+         y="59.420834">image001.png</tspan></text>
+    <rect
+       style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.35278;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000;stop-opacity:1"
+       id="rect8770"
+       width="52.916664"
+       height="31.75"
+       x="26.458332"
+       y="42.333332" />
+  </g>
+</svg>

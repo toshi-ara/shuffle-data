@@ -81,4 +81,4 @@ For example
 MIT LICENSE
 
 ## Author
-Ara Toshiaki
+ARA Toshiaki

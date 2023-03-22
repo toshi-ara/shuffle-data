@@ -28,42 +28,46 @@ Prepare Excel file and images.
 For example
 ```
 .
-└── images
-    ├── image001.png
-    ├── image002.png
-    ├── image003.png
-    ├── image004.png
-    ├── image005.png
-    ├── image006.png
-    ├── result         <= folder for output data
-    └── sample.xlsx
+`-- sample-images
+    |-- image001.png
+    |-- image002.png
+    |-- image003.png
+    |-- image004.png
+    |-- image005.png
+    |-- image006.png
+    |-- result         <= folder for output data
+    |-- sample-missing_filename.xlsx
+    |-- sample-wrong_filename.xlsx
+    `-- sample.xlsx
 ```
 
 ### Run program
 1. Select Excel file
     - set path to folder automaticaly
 1. Select images / save folder, if necessary
-1. Push "shuffle data" button
+1. Push "Shuffle" button
 1. Output Excel file and shuffled image files are saved.
 
 ```
 .
-└── images
-    ├── image001.png
-    ├── image002.png
-    ├── image003.png
-    ├── image004.png
-    ├── image005.png
-    ├── image006.png
-    ├── result         <= folder for output data
-    │   ├── shuffled-sample.xlsx
-    │   ├── shuffled_001.png
-    │   ├── shuffled_002.png
-    │   ├── shuffled_003.png
-    │   ├── shuffled_004.png
-    │   ├── shuffled_005.png
-    │   └── shuffled_006.png
-    └── sample.xlsx
+`-- sample-images
+    |-- image001.png
+    |-- image002.png
+    |-- image003.png
+    |-- image004.png
+    |-- image005.png
+    |-- image006.png
+    |-- result         <= folder for output data
+    |   |-- shuffled-sample.xlsx
+    |   |-- shuffled_001.png
+    |   |-- shuffled_002.png
+    |   |-- shuffled_003.png
+    |   |-- shuffled_004.png
+    |   |-- shuffled_005.png
+    |   `-- shuffled_006.png
+    |-- sample-missing_filename.xlsx
+    |-- sample-wrong_filename.xlsx
+    `-- sample.xlsx
 ```
 
 ### Output Excel file

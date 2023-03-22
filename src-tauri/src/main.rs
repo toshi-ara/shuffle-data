@@ -83,16 +83,26 @@ fn do_shuffle(file_input: &str,
                                     file_path.extension()
                                     .unwrap()
                                     .to_string_lossy());
-            let _ = worksheet.write_string(id[i] as u32, (_nc + 1) as u16,
-                                           &_new_file);
+
+            // set filepath
+            let _path_from = &_path_dir_input.join(&_file);
+            let _path_to = &_path_dir_output.join(&_new_file);
+
+            if Path::is_file(&_path_from) {
+                // when file is present
+                // write to cell
+                let _ = worksheet.write_string(id[i] as u32, (_nc + 1) as u16,
+                                               &_new_file);
+                // copy files
+                let _ = std::fs::copy(&_path_from, &_path_to);
+            } else {
+                // show dialog
+                message(Some(&window), "Warning",
+                        format!("{} is missing!", &_file));
+            }
 
             // autowidth
             worksheet.autofit();
-
-            // copy files
-            copy_file(&_file, &_path_dir_input,
-                      &_new_file, &_path_dir_output,
-                      &window);
         }
 
         // show dialog
@@ -161,21 +171,3 @@ fn set_value_cell(worksheet: &mut Worksheet,
     };
 }
 
-
-// copy files
-fn copy_file(_file: &String,
-             _path_dir_input: &Path,
-             _new_file: &String,
-             _path_dir_output: &Path,
-             _window: &tauri::Window){
-    let _path_from = &_path_dir_input.join(&_file);
-    let _path_to = &_path_dir_output.join(&_new_file);
-
-    if Path::is_file(&_path_from) {
-        let _ = std::fs::copy(&_path_from, &_path_to);
-    } else {
-        // show dialog
-        message(Some(&_window), "Warning",
-                format!("{} is missing!", &_file));
-    }
-}

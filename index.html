@@ -10,15 +10,28 @@
 
     <body>
         <h2>Shuffle Data</h2>
+
         <h3>Excel file (.xlsx)</h3>
+        <div class = "wrap">
             <button id="btn_select_file_input" type="button">Select</button>
-            <p id="msg_file_input"></p>
+            <p id="msg_file_input">(unselected)</p>
+        </div>
+
         <h3>Folder for image files</h3>
+        <div class = "wrap">
             <button id="btn_select_dir_input" type="button">Select</button>
-            <p id="msg_dir_input"></p>
+            <div class = "wrap">
+                <p id="msg_dir_input">(unselected)</p>
+            </div>
+        </div>
+
         <h3>Folder for shuffled data</h3>
+        <div class = "wrap">
             <button id="btn_select_dir_output" type="button">Select</button>
-            <p id="msg_dir_output"></p>
+            <p id="msg_dir_output">(unselected)</p>
+        </div>
+
+        <BR>
         <div>
             <button id="btn_do" type="button">Shuffle</button>
             <button id="btn_quit" type="button">Quit</button>

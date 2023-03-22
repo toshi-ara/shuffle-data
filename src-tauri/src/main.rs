@@ -2,6 +2,7 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 use std::path::Path;
+use std::result::Result::Err;
 use rand::seq::SliceRandom;
 use rand::thread_rng;
 use calamine::{Reader, Xlsx, open_workbook, DataType, Range};
@@ -24,7 +25,7 @@ fn do_shuffle(file_input: &str,
               dir_input: &str,
               file_output: &str,
               dir_output: &str,
-              window: tauri::Window ) -> Result<(), String> {
+              window: tauri::Window) -> Result<(), String> {
     // set filepath
     let _path_file_input = Path::new(&file_input);
     let _path_dir_input = Path::new(&dir_input);
@@ -44,7 +45,10 @@ fn do_shuffle(file_input: &str,
         let _nc = range.get_size().1;
 
         // get column number of "filename"
-        let nc_filename = get_filename_column_number(&range, _nc);
+        let nc_filename = get_filename_column_number(&range, _nc, &window);
+        if nc_filename.0 == false {
+            return Err("Column named filename is missing".to_string());
+        }
 
         // get shuffled ID
         let id = rnd_index(_nr);
@@ -71,7 +75,7 @@ fn do_shuffle(file_input: &str,
 
             // "new_filename" column
             // set new filename
-            let _file = range.get_value(((i + 1) as u32, nc_filename as u32))
+            let _file = range.get_value(((i + 1) as u32, nc_filename.1 as u32))
                 .unwrap().to_string();
             let file_path = Path::new(&_file);
             let _new_file = format!("shuffled_{:>03}.{}",
@@ -117,16 +121,24 @@ fn rnd_index(n: usize) -> Vec<usize> {
 
 
 // get column number of "filename"
-fn get_filename_column_number(range: &Range<DataType>, col: usize) -> usize {
-    let mut nc_filename: usize = 0;
+// args:
+//    range
+//    col: max column number
+fn get_filename_column_number(range: &Range<DataType>,
+                              col: usize,
+                              _window: &tauri::Window) -> (bool, usize) {
+    // show dialog
     for j in 0..col {
         let _value = range.get_value((0, j as u32)).unwrap();
         if _value == "filename" {
-            nc_filename = j;
-            break;
+            return (true, j as usize);
         }
     }
-    nc_filename
+
+    // show dialog
+    message(Some(&_window), "Error",
+            "Column named 'filename' is missing!");
+    return (false, 0 as usize);
 }
 
 
@@ -148,6 +160,7 @@ fn set_value_cell(worksheet: &mut Worksheet,
         _ => worksheet.write_string(row, col, ""),
     };
 }
+
 
 // copy files
 fn copy_file(_file: &String,

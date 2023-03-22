@@ -65,12 +65,12 @@ fn do_shuffle(file_input: &str,
 
         // write contents (shuffled order)
         for i in 0.._nr {
-            // contents in input file
+            // write contents in input file
             for j in 0.._nc {
                 let _value = range.get_value(((i + 1) as u32, j as u32)).unwrap();
                 set_value_cell(worksheet, id[i] as u32, (j + 1) as u16, _value);
             }
-            // "ID" column
+            // write "ID" column
             let _ = worksheet.write_number(id[i] as u32, 0, (i + 1) as u32);
 
             // "new_filename" column
@@ -90,13 +90,13 @@ fn do_shuffle(file_input: &str,
 
             if Path::is_file(&_path_from) {
                 // when file is present
-                // write to cell
+                // write new filename to cell
                 let _ = worksheet.write_string(id[i] as u32, (_nc + 1) as u16,
                                                &_new_file);
                 // copy files
                 let _ = std::fs::copy(&_path_from, &_path_to);
             } else {
-                // show dialog
+                // show dialog when file is missing
                 message(Some(&window), "Warning",
                         format!("{} is missing!", &_file));
             }
@@ -134,6 +134,8 @@ fn rnd_index(n: usize) -> Vec<usize> {
 // args:
 //    range
 //    col: max column number
+// return:
+//    (bool, usize)
 fn get_filename_column_number(range: &Range<DataType>,
                               col: usize,
                               _window: &tauri::Window) -> (bool, usize) {

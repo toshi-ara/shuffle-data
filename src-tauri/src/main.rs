@@ -173,4 +173,3 @@ fn set_value_cell(worksheet: &mut Worksheet,
         _ => worksheet.write_string(row, col, ""),
     };
 }
-

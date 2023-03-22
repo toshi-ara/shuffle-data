@@ -34,11 +34,12 @@ fn do_shuffle(file_input: &str,
 
     // Read spreadsheet (using calamine)
     let mut _book_in: Xlsx<_> = open_workbook(&_path_file_input).unwrap();
+    let sheet_names = _book_in.sheet_names();
     // Write spreadsheet (using rust_xlsxwriter)
     let mut _book_out = Workbook::new();
     let worksheet = _book_out.add_worksheet();
 
-    if let Some(Ok(range)) = _book_in.worksheet_range("Sheet1") {
+    if let Some(Ok(range)) = _book_in.worksheet_range(&sheet_names[0].to_string()) {
         // get numbers of rows and columns
         // _nr: row number of data (exclude header)
         let _nr = range.get_size().0 - 1;
@@ -63,7 +64,7 @@ fn do_shuffle(file_input: &str,
         let _ = worksheet.write_string(0, 0, "ID");
         let _ = worksheet.write_string(0, (_nc + 1) as u16, "new_filename");
 
-        // write contents (shuffled order)
+        // write contents (shuffled order) / copy files
         for i in 0.._nr {
             // write contents in input file
             for j in 0.._nc {
@@ -101,7 +102,7 @@ fn do_shuffle(file_input: &str,
                         format!("{} is missing!", &_file));
             }
 
-            // autowidth
+            // autowidth worksheet
             worksheet.autofit();
         }
 

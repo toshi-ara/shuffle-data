@@ -39,47 +39,47 @@ fn do_shuffle(file_input: &str,
 
     if let Some(Ok(range)) = _book_in.worksheet_range("Sheet1") {
         // get numbers of rows and columns
-        // _nr: header + rows of data
-        let _nr = range.get_size().0;
+        // _nr: row number of data (exclude header)
+        let _nr = range.get_size().0 - 1;
         let _nc = range.get_size().1;
 
         // get column number of "filename"
         let nc_filename = get_filename_column_number(&range, _nc);
 
-        // shuffle ID
-        let id = rnd_index(_nr - 1);
+        // get shuffled ID
+        let id = rnd_index(_nr);
 
-        // write headers of original data
+        // write headers
+        // headers in input file
         for j in 0.._nc {
             let _value = range.get_value((0, j as u32)).unwrap();
             set_value_cell(worksheet, 0, (j + 1) as u16, _value);
         }
-        // write headers for ID / new filename
+        // headers for ID / new filename
         let _ = worksheet.write_string(0, 0, "ID");
         let _ = worksheet.write_string(0, (_nc + 1) as u16, "new_filename");
 
         // write contents (shuffled order)
-        for i in 1.._nr {
-            // contents
+        for i in 0.._nr {
+            // contents in input file
             for j in 0.._nc {
-                let _value = range.get_value((i as u32, j as u32)).unwrap();
-                set_value_cell(worksheet, id[i - 1] as u32, (j + 1) as u16, _value);
+                let _value = range.get_value(((i + 1) as u32, j as u32)).unwrap();
+                set_value_cell(worksheet, id[i] as u32, (j + 1) as u16, _value);
             }
+            // "ID" column
+            let _ = worksheet.write_number(id[i] as u32, 0, (i + 1) as u32);
 
-            // ID
-            let _ = worksheet.write_number(id[i - 1] as u32, 0, i as u32);
-
+            // "new_filename" column
             // set new filename
-            let _file = range.get_value((i as u32, nc_filename as u32))
+            let _file = range.get_value(((i + 1) as u32, nc_filename as u32))
                 .unwrap().to_string();
             let file_path = Path::new(&_file);
             let _new_file = format!("shuffled_{:>03}.{}",
-                                    id[i - 1],
+                                    id[i],
                                     file_path.extension()
                                     .unwrap()
                                     .to_string_lossy());
-            // write new filename into cells
-            let _ = worksheet.write_string(id[i - 1] as u32, (_nc + 1) as u16,
+            let _ = worksheet.write_string(id[i] as u32, (_nc + 1) as u16,
                                            &_new_file);
 
             // autowidth
@@ -90,6 +90,7 @@ fn do_shuffle(file_input: &str,
                       &_new_file, &_path_dir_output,
                       &window);
         }
+
         // show dialog
         message(Some(&window), "Message", "Shuffle is completed.");
 

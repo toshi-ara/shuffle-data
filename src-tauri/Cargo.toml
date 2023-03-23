@@ -1,6 +1,6 @@
 [package]
 name = "shuffle-data"
-version = "0.0.3"
+version = "0.0.4"
 description = "Shuffle data for blind"
 authors = ["ARA Toshiaki"]
 license = "MIT LICENSE"

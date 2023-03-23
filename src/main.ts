@@ -6,7 +6,7 @@ import { exit } from "@tauri-apps/api/process";
 let msgFileInput: HTMLElement;
 let msgDirInput: HTMLElement;
 let msgDirOutput: HTMLElement;
-let menuSelectWorksheet: HTMLElement;
+let menuSelectWorksheet: HTMLInputElement;
 
 let fileInput: string|null = null;
 let fileOutput: string = "";
@@ -56,7 +56,7 @@ async function openDialogFileInput(): Promise<void> {
 
 
 async function selectWorksheet(): Promise<void> {
-    workSheet = workSheets[menuSelectWorksheet.value];
+    workSheet = workSheets[Number(menuSelectWorksheet.value)];
 }
 
 
@@ -101,7 +101,7 @@ window.addEventListener("DOMContentLoaded", () => {
   msgFileInput = document.querySelector("#msg_file_input")!;
   msgDirInput = document.querySelector("#msg_dir_input")!;
   msgDirOutput = document.querySelector("#msg_dir_output")!;
-  menuSelectWorksheet = document.querySelector("#btn_select_worksheet")!;
+  menuSelectWorksheet = <HTMLInputElement>document.querySelector("#btn_select_worksheet")!;
 
   document
     .querySelector("#btn_select_file_input")

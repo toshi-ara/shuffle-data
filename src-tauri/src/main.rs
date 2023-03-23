@@ -13,6 +13,7 @@ use tauri::api::dialog::message;
 fn main() {
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
+            get_worksheet,
             do_shuffle
         ])
         .run(tauri::generate_context!())
@@ -21,10 +22,30 @@ fn main() {
 
 
 #[tauri::command]
+fn get_worksheet(file_input: &str) -> Result<Vec<String>, String> {
+    let _path_file_input = Path::new(&file_input);
+    let mut _book_in: Xlsx<_> = open_workbook(&_path_file_input).unwrap();
+
+    if Path::is_file(&_path_file_input) {
+        let _worksheet: &[String] = _book_in.sheet_names();
+        let mut _ws: Vec<String> = Vec::new();
+        for x in _worksheet {
+            _ws.push(x.to_string());
+        }
+        Ok(_ws)
+        // Ok(vec!("sheet1".to_string(), "sheet2".to_string()))
+    } else {
+        Err("Can't open workbook".to_string())
+    }
+}
+
+
+#[tauri::command]
 fn do_shuffle(file_input: &str,
               dir_input: &str,
               file_output: &str,
               dir_output: &str,
+              work_sheet: &str,
               window: tauri::Window) -> Result<(), String> {
     // set filepath
     let _path_file_input = Path::new(&file_input);
@@ -34,12 +55,11 @@ fn do_shuffle(file_input: &str,
 
     // Read spreadsheet (using calamine)
     let mut _book_in: Xlsx<_> = open_workbook(&_path_file_input).unwrap();
-    let sheet_names = _book_in.sheet_names();
     // Write spreadsheet (using rust_xlsxwriter)
     let mut _book_out = Workbook::new();
     let worksheet = _book_out.add_worksheet();
 
-    if let Some(Ok(range)) = _book_in.worksheet_range(&sheet_names[0].to_string()) {
+    if let Some(Ok(range)) = _book_in.worksheet_range(&work_sheet.to_string()) {
         // get numbers of rows and columns
         // _nr: row number of data (exclude header)
         let _nr = range.get_size().0 - 1;

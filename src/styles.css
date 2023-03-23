@@ -48,6 +48,11 @@ h3 {
     color: darkblue;
 }
 
+h4 {
+    font-size: 18px;
+    color: darkblue;
+}
+
 button {
     border-radius: 6px;
     border: 1px solid transparent;

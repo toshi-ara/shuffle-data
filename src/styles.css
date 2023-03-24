@@ -16,7 +16,7 @@
 
 .container {
     margin: 0;
-    padding-top: 10vh;
+    padding-top: 2em;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,7 +24,7 @@
 }
 
 a {
-    font-weight: 500;
+    font-weight: 200;
     color: #646cff;
     text-decoration: inherit;
 }
@@ -59,12 +59,11 @@ button {
     margin: 0em 1.0em 0em 1.0em;
     padding: 0.5em 1.0em;
     font-size: 1em;
-    font-weight: 400;
+    font-weight: 200;
     font-family: inherit;
     color: #0f0f0f;
     border-color: #c0c0c0;
     background-color: #ffffff;
-    /* box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2); */
     cursor: pointer;
 }
 

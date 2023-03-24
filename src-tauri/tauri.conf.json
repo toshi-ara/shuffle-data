@@ -62,8 +62,8 @@
                 "fullscreen": false,
                 "resizable": true,
                 "title": "Shuffle data",
-                "width": 800,
-                "height": 600
+                "width": 700,
+                "height": 720
             }
         ]
     }
